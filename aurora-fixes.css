@@ -1,0 +1,183 @@
+/* ═══════════════ AURORA UI / RESPONSIVE PATCHES ═══════════════ */
+
+/* Right panel: tabs were missing their own layout and active state. */
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+}
+.right-panel .tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 0 0 auto;
+  padding: 10px 10px 9px;
+  border-bottom: 1px solid rgba(255,255,255,.09);
+  background: rgba(255,255,255,.025);
+}
+.right-panel .tab {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 9px 6px;
+  border-radius: 9px;
+  color: var(--text-tertiary);
+  font: 600 11px/1.2 'Inter', sans-serif;
+  white-space: nowrap;
+  text-align: center;
+  transition: background .18s ease, color .18s ease;
+}
+.right-panel .tab:hover {
+  color: var(--text-primary);
+  background: rgba(255,255,255,.055);
+}
+.right-panel .tab.active {
+  color: #fff;
+  background: linear-gradient(135deg, rgba(168,85,247,.23), rgba(236,72,153,.14));
+  box-shadow: inset 0 0 0 1px rgba(196,132,252,.18);
+}
+.tab-content {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+.tab-pane {
+  display: none;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+}
+.tab-pane.active { display: block; }
+#queuePane.active, #lyricsPane.active { padding: 6px 6px 12px; }
+#playlistsPane.active { padding: 8px; }
+
+.panel-close {
+  display: none;
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 50%;
+  color: var(--text-secondary);
+  background: rgba(255,255,255,.045);
+}
+.panel-close:hover { color: #fff; background: rgba(255,255,255,.1); }
+
+/* Consistent scrolling and sizing in the library. */
+.left-panel { min-width: 0; min-height: 0; overflow: hidden; }
+.library-list { min-height: 60px; }
+.queue-list, .lyrics-list { min-width: 0; }
+.queue-item, .library-item { min-width: 0; }
+.queue-info, .library-info { min-width: 0; }
+
+/* Never claim every imported track is lossless: show the real filename format. */
+.format-badge { text-transform: uppercase; }
+.source-badge { color: var(--text-secondary); }
+
+/* Visible feedback while a file is dragged over the player. */
+.layout-grid.drag-over .center-panel {
+  outline: 2px dashed rgba(192,132,252,.9);
+  outline-offset: -8px;
+  background-color: rgba(168,85,247,.075);
+}
+
+/* Tablet / small laptop: right panel becomes a real slide-out drawer. */
+@media (max-width: 1100px) {
+  .layout-grid {
+    grid-template-columns: minmax(210px, .72fr) minmax(0, 1.5fr);
+    gap: 14px;
+  }
+  .right-panel {
+    display: flex !important;
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    bottom: 16px;
+    width: min(360px, calc(100vw - 32px));
+    max-height: none;
+    z-index: 300;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(calc(100% + 28px));
+    transition: transform .25s ease, visibility .25s ease;
+    box-shadow: 0 24px 80px rgba(0,0,0,.48);
+  }
+  .right-panel.open {
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(0);
+  }
+  .panel-close { display: inline-flex; }
+}
+
+@media (max-width: 800px) {
+  html, body { height: auto; min-height: 100%; overflow-x: hidden; overflow-y: auto; }
+  .app {
+    height: auto;
+    min-height: 100dvh;
+    max-width: 100%;
+    padding: 12px 12px 18px;
+    gap: 12px;
+    overflow: visible;
+  }
+  .topbar {
+    height: auto;
+    min-height: 60px;
+    padding: 12px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .topbar-left { width: auto; flex: 1 1 auto; }
+  .topbar-center { order: 3; flex: 1 0 100%; }
+  .topbar-right { width: auto; flex: 0 1 auto; gap: 6px; }
+  .topbar-divider, .user-info { display: none; }
+  .top-nav { gap: 1px; }
+  .nav-icon { width: 32px; height: 32px; }
+  .user-profile { padding: 2px; }
+  .import-btn-top { width: 34px; height: 34px; }
+  .layout-grid {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: visible;
+    gap: 12px;
+  }
+  .center-panel { order: 1; flex: 0 0 auto; min-height: 480px; max-height: none; overflow: visible; }
+  .left-panel { order: 2; height: 320px; flex: 0 0 auto; }
+  .hero { min-height: 480px; padding: 16px; }
+  .player-content { gap: 14px; }
+  .right-panel {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(420px, 100vw);
+    border-radius: 18px 0 0 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app { padding: 8px; }
+  .topbar { padding: 10px; }
+  .topbar-right { gap: 3px; }
+  .nav-icon { width: 29px; height: 29px; font-size: 13px; }
+  .logo-text { font-size: 15px; }
+  .center-panel, .hero { min-height: 440px; }
+  .album-art-wrap { width: min(220px, 58vw); height: min(220px, 58vw); }
+  .song-title { font-size: 19px; }
+  .secondary-controls { gap: 5px; }
+  .volume-bar { width: 54px; }
+  .right-panel { border-radius: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .right-panel { transition: none; }
+}

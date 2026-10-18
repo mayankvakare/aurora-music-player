@@ -1,0 +1,42 @@
+@media (max-width:1199px){
+  .app{grid-template-columns:72px 1fr;gap:16px;padding:16px}
+  .sidebar{padding:16px 8px;align-items:center}
+  .logo-text,.nav-item span,.mini-info{display:none}
+  .nav-item{justify-content:center;padding:0;width:44px}
+  .now-playing-mini{padding:6px;justify-content:center}
+  .mini-art{width:36px;height:36px}
+  .right-panel{position:fixed;top:16px;bottom:96px;right:16px;width:320px;z-index:60;transform:translateX(calc(100% + 24px));transition:transform .3s var(--ease-out)}
+  .right-panel.open{transform:translateX(0)}
+  .bottom-player{display:flex}
+  .bottom-player.hidden{display:none!important}
+  .main{padding-bottom:90px}
+}
+@media (max-width:767px){
+  .app{grid-template-columns:1fr;padding:12px 12px 76px;gap:12px}
+  .sidebar{position:fixed;bottom:0;left:0;right:0;height:64px;flex-direction:row;padding:8px 12px;border-radius:var(--radius-xl) var(--radius-xl) 0 0;z-index:70;justify-content:space-around;animation:none;background:rgba(20,20,30,.85);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-top:1px solid var(--glass-border);padding-bottom:calc(8px + env(safe-area-inset-bottom))}
+  .logo,.now-playing-mini{display:none}
+  .nav{flex-direction:row;gap:0;flex:0;justify-content:space-around;width:100%}
+  .nav-item{width:48px;height:48px;padding:0}
+  .nav-item i{font-size:18px}
+  .nav-item.active::before{display:none}
+  .album-art-wrap{width:min(240px, 55vh);height:min(240px, 55vh)}
+  .song-title{font-size:22px}
+  .main{padding:16px}
+  .controls{gap:12px}
+  .play-btn{width:56px;height:56px;font-size:20px}
+  .right-panel{top:0;bottom:0;right:0;width:100%;border-radius:0;transform:translateX(100%)}
+  .right-panel.open{transform:translateX(0)}
+  .bottom-player{bottom:72px;left:8px;right:8px;padding:10px 12px}
+  .search-kbd{display:none}
+  .glass{border-radius:var(--radius-lg)}
+  .volume-bar{width:70px}
+  .empty-state{padding:40px 16px}
+  .empty-state .empty-icon{width:90px;height:90px;font-size:36px}
+  .empty-state h2{font-size:20px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  .blob{animation:none!important}
+  .vinyl.playing{animation:none}
+  .empty-state .empty-icon{animation:none}
+}

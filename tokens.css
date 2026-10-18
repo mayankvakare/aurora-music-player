@@ -1,0 +1,18 @@
+/* ═══════════════ DESIGN TOKENS — Aurora v2.0 (Glassclay) ═══════════════ */
+/* NOTE: Core tokens are now managed in glassclay.css :root block.
+   This file keeps legacy fallbacks for any files that reference the old vars. */
+:root{
+  --bg-base:#080812;
+  --bg-mesh-1:#6d28d9; --bg-mesh-2:#db2777; --bg-mesh-3:#0891b2; --bg-mesh-4:#d97706;
+  --glass-bg:rgba(255,255,255,.055); --glass-bg-hover:rgba(255,255,255,.11);
+  --glass-border:rgba(255,255,255,.13); --glass-border-strong:rgba(255,255,255,.28);
+  --text-primary:#f0eeff; --text-secondary:rgba(240,238,255,.68); --text-tertiary:rgba(240,238,255,.40);
+  --accent:#a78bfa; --accent-glow:rgba(167,139,250,.55);
+  --danger:#fb7185; --success:#34d399;
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:24px; --space-6:32px;
+  --radius-sm:12px; --radius-md:18px; --radius-lg:24px; --radius-xl:32px; --radius-full:999px;
+  --ease-out:cubic-bezier(.22,1,.36,1);
+  --ease-spring:cubic-bezier(.34,1.56,.64,1);
+  --ease-in-out:cubic-bezier(.65,0,.35,1);
+  --dur-fast:140ms; --dur-base:240ms; --dur-slow:380ms;
+}
